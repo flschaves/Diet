@@ -1,82 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<title>Diet</title>
-	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-	<style>
-		h1 {text-align: center;}
-		table {margin: 20px auto; max-width: 800px}
-	</style>
+    <meta charset="utf-8" />
+    <title>Diet</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <style>
+        h1 {text-align: center;}
+        table {margin: 20px auto; max-width: 800px}
+    </style>
 </head>
 <body>
 
 <main>
-	<h1 class="pure-menu-heading ">Dieta da semana</h1>
-	<table class="pure-table pure-table-bordered">
-		<thead>
-			<tr>
-				<th>Segunda</th>
-				<th>Terça</th>
-				<th>Quarta</th>
-				<th>Quinta</th>
-				<th>Sexta</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr id="dinners">
-			</tr>
-		</tbody>
-	</table>
+    <h1 class="pure-menu-heading ">Dieta da semana</h1>
+    <table class="pure-table pure-table-bordered">
+        <thead>
+            <tr>
+                <th>Segunda</th>
+                <th>Terça</th>
+                <th>Quarta</th>
+                <th>Quinta</th>
+                <th>Sexta</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="dinners">
+            </tr>
+        </tbody>
+    </table>
 </main>
 
 <script>
-	(function(){
-		'use strict';
+    (function(){
+        'use strict';
 
-		/* Create a array with possible meals */
-		var meals = [
-			'Bife bem magro, com feijão e salada',
-			'Alface, azeitona, pepino, ovo de codorna temperado',
-			'Banana ou maçã picada com mel',
-			'Suco verde'
-		];
+        /* Create am array with possible meals */
+        var meals = [
+            'Bife bem magro, com feijão e salada',
+            'Alface, azeitona, pepino, ovo de codorna temperado',
+            'Banana ou maçã picada com mel',
+            'Suco verde'
+        ];
 
-		var days    = document.querySelectorAll( 'table thead th' ), // Get all days that i want to make a diet
-			dinners = document.getElementById( 'dinners' ), // get row to insert meals
-			node, textNode; // create variables to Node
+        var days    = document.querySelectorAll( 'table thead th' ), // Get all days that i want to make a diet
+            dinners = document.getElementById( 'dinners' ), // get row to insert meals
+            node, textNode; // create variables to Node
 
-		/* While not has enough meals to days, repeat it */
-		if ( meals.length < days.length ) {
-			while ( meals.length < days.length ) {
-				meals.push( meals[ Math.floor( Math.random() * meals.length ) ] );
-			}
-		}
+        /* While not has enough meals to days, repeat it */
+        if ( meals.length < days.length ) {
+            while ( meals.length < days.length ) {
+                meals.push( meals[ Math.floor( Math.random() * meals.length ) ] );
+            }
+        }
 
-		/* Shuffle meals to populate table */
-		meals = shuffleArray( meals );
+        /* Shuffle meals to populate table */
+        meals = shuffleArray( meals );
 
-		/* Populate table */
-		for ( var i = 0; i < days.length; i++ ) {
-			/* Creates element with text */
-			node = document.createElement( 'td' );
-			textNode = document.createTextNode( meals[ i ] );
-			node.appendChild( textNode );
+        /* Populate table */
+        for ( var i = 0; i < days.length; i++ ) {
+            /* Creates element with text */
+            node = document.createElement( 'td' );
+            textNode = document.createTextNode( meals[ i ] );
+            node.appendChild( textNode );
 
-			/* Appends element to table */
-			dinners.appendChild( node );
-		}
-	}());
+            /* Appends element to table */
+            dinners.appendChild( node );
+        }
+    }());
 
-	function shuffleArray( array ) {
-	    for ( var i = array.length - 1; i > 0; i-- ) {
-	        var j = Math.floor( Math.random() * ( i + 1 ) );
-	        var temp = array[ i ];
-	        array[ i ] = array[ j ];
-	        array[ j ] = temp;
-	    }
-	    return array;
-	}
+    function shuffleArray( array ) {
+        for ( var i = array.length - 1; i > 0; i-- ) {
+            var j = Math.floor( Math.random() * ( i + 1 ) );
+            var temp = array[ i ];
+            array[ i ] = array[ j ];
+            array[ j ] = temp;
+        }
+        return array;
+    }
 </script>
 </body>
 </html>

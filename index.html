@@ -16,15 +16,15 @@
     <table class="pure-table pure-table-bordered">
         <thead>
             <tr>
-                <th>Segunda</th>
-                <th>Terça</th>
-                <th>Quarta</th>
-                <th>Quinta</th>
-                <th>Sexta</th>
+                <th data-js="day">Segunda</th>
+                <th data-js="day">Terça</th>
+                <th data-js="day">Quarta</th>
+                <th data-js="day">Quinta</th>
+                <th data-js="day">Sexta</th>
             </tr>
         </thead>
         <tbody>
-            <tr id="dinners">
+            <tr data-js="dinners">
             </tr>
         </tbody>
     </table>
@@ -34,7 +34,7 @@
     (function(){
         'use strict';
 
-        /* Create am array with possible meals */
+        /* Creates an array with possible meals */
         var meals = [
             'Bife bem magro, com feijão e salada',
             'Alface, azeitona, pepino, ovo de codorna temperado',
@@ -42,9 +42,9 @@
             'Suco verde'
         ];
 
-        var days    = document.querySelectorAll( 'table thead th' ), // Get all days that i want to make a diet
-            dinners = document.getElementById( 'dinners' ), // get row to insert meals
-            node, textNode; // create variables to Node
+        var days    = document.querySelectorAll( '[data-js="day"]' ), // Get all days that I want to make a diet
+            dinners = document.querySelector( '[data-js="dinners"]' ), // Get element to insert meals
+            docFragment = document.createDocumentFragment(); // Creates a document fragment
 
         /* While not has enough meals to days, repeat it */
         if ( meals.length < days.length ) {
@@ -56,27 +56,26 @@
         /* Shuffle meals to populate table */
         meals = shuffleArray( meals );
 
-        /* Populate table */
+        /* Populate document fragment */
         for ( var i = 0; i < days.length; i++ ) {
-            /* Creates element with text */
-            node = document.createElement( 'td' );
-            textNode = document.createTextNode( meals[ i ] );
-            node.appendChild( textNode );
+            var td = document.createElement( 'td' );
+            td.textContent = meals[ i ];
+            docFragment.appendChild( td );
+        }
 
-            /* Appends element to table */
-            dinners.appendChild( node );
+        /* Append document frament to DOM */
+        dinners.appendChild( docFragment );
+
+        function shuffleArray( array ) {
+            for ( var i = array.length - 1; i > 0; i-- ) {
+                var j = Math.floor( Math.random() * ( i + 1 ) );
+                var temp = array[ i ];
+                array[ i ] = array[ j ];
+                array[ j ] = temp;
+            }
+            return array;
         }
     }());
-
-    function shuffleArray( array ) {
-        for ( var i = array.length - 1; i > 0; i-- ) {
-            var j = Math.floor( Math.random() * ( i + 1 ) );
-            var temp = array[ i ];
-            array[ i ] = array[ j ];
-            array[ j ] = temp;
-        }
-        return array;
-    }
 </script>
 </body>
 </html>

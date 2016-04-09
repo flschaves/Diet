@@ -1,20 +1,20 @@
 main {
-	max-width: 800px;
-	margin: 0 auto;
+    max-width: 800px;
+    margin: 0 auto;
 }
 table {
-	margin: 20px 0;
+    margin: 20px 0;
 }
 h1 {
-	text-align: center;
+    text-align: center;
 }
 .print {
-	float: right;
+    float: right;
 }
 
 
 @media print {
-	.print {
-		display: none;
-	}
+    .print {
+        display: none;
+    }
 }
